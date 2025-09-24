@@ -1,0 +1,1211 @@
+{
+  "resourceType": "Bundle",
+  "id": "ips-example",
+  "meta": {
+    "lastUpdated": "2024-06-15T14:30:00Z",
+    "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Bundle-uv-ips"]
+  },
+  "identifier": {
+    "system": "urn:oid:2.16.840.1.113883.4.3.2.1",
+    "value": "IPS-001"
+  },
+  "type": "document",
+  "timestamp": "2024-01-15T14:30:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:30551ce1-5a28-4356-b684-1e639094ad17",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "composition-example",
+        "status": "final",
+        "type": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "60591-5",
+            "display": "Patient summary Document"
+          }]
+        },
+        "subject": {
+          "reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"
+        },
+        "date": "2024-01-15T14:30:00Z",
+        "author": [{
+          "display": "Military Medical Unit"
+        }],
+        "title": "International Patient Summary",
+        "section": [
+          {
+            "title": "Problem List",
+            "code": {
+              "coding": [{
+                "system": "http://loinc.org",
+                "code": "11450-4",
+                "display": "Problem list"
+              }]
+            },
+            "entry": [
+              { "reference": "urn:uuid:c220e36c-eb67-4fc4-9ba1-2fabc52acec6" }
+            ]
+          },
+          {
+            "title": "Vital Signs",
+            "code": {
+              "coding": [{
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital signs"
+              }]
+            },
+            "entry": [
+              { "reference": "urn:uuid:1f1574f8-b4e4-4b94-a0c5-7a2e8b1c3d4e" },
+              { "reference": "urn:uuid:2f2574f8-b4e4-4b94-a0c5-7a2e8b1c3d4f" },
+              { "reference": "urn:uuid:3f3574f8-b4e4-4b94-a0c5-7a2e8b1c3d50" }
+            ]
+          },
+          {
+            "title": "Medication Summary",
+            "code": {
+              "coding": [{
+                "system": "http://loinc.org",
+                "code": "10160-0",
+                "display": "History of Medication use Narrative"
+              }]
+            },
+            "entry": [
+              { "reference": "urn:uuid:4f4574f8-b4e4-4b94-a0c5-7a2e8b1c3d51" },
+              { "reference": "urn:uuid:5f5574f8-b4e4-4b94-a0c5-7a2e8b1c3d52" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-example",
+        "identifier": [
+          {
+            "use": "official",
+            "type": {
+              "coding": [{
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code": "NH",
+                "display": "National Health Service Number"
+              }],
+              "text": "NHS Number"
+            },
+            "value": "4857773456"
+          },
+          {
+            "use": "secondary",
+            "type": {
+              "coding": [{
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code": "MIL",
+                "display": "Military ID number"
+              }],
+              "text": "Service Number"
+            },
+            "value": "5199"
+          }
+        ],
+        "name": [{
+          "use": "official",
+          "prefix": ["Drummer"],
+          "given": ["Thomas"],
+          "family": "Hodge"
+        }],
+        "birthDate": "1884-06-02",
+        "gender": "male",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-nationality",
+            "valueCodeableConcept": {
+              "coding": [{
+                "system": "urn:iso:std:iso:3166",
+                "code": "GB",
+                "display": "United Kingdom"
+              }]
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-bloodGroup",
+            "valueCodeableConcept": {
+              "coding": [{
+                "system": "http://snomed.info/sct",
+                "code": "278152006",
+                "display": "Blood group A Rh(D) negative (A-)"
+              }]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c220e36c-eb67-4fc4-9ba1-2fabc52acec6",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-blast-injury",
+        "clinicalStatus": {
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code": "active"
+          }]
+        },
+        "verificationStatus": {
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+            "code": "confirmed"
+          }]
+        },
+        "category": [{
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+            "code": "encounter-diagnosis"
+          }]
+        }],
+        "code": {
+          "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "217082002",
+            "display": "Accidental explosion"
+          }]
+        },
+        "subject": {
+          "reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"
+        },
+        "onsetDateTime": "2024-01-15T14:15:00Z",
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/care-stage",
+            "valueCode": "poi"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1f1574f8-b4e4-4b94-a0c5-7a2e8b1c3d4e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vital-temperature",
+        "status": "final",
+        "category": [{
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "vital-signs"
+          }]
+        }],
+        "code": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "8310-5",
+            "display": "Body temperature"
+          }]
+        },
+        "subject": {
+          "reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"
+        },
+        "effectiveDateTime": "2024-01-15T14:16:00Z",
+        "valueQuantity": {
+          "value": 36.8,
+          "unit": "°C",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        },
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/care-stage",
+            "valueCode": "poi"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2f2574f8-b4e4-4b94-a0c5-7a2e8b1c3d4f",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vital-heart-rate",
+        "status": "final",
+        "category": [{
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "vital-signs"
+          }]
+        }],
+        "code": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "8867-4",
+            "display": "Heart rate"
+          }]
+        },
+        "subject": {
+          "reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"
+        },
+        "effectiveDateTime": "2024-01-15T14:17:00Z",
+        "valueQuantity": {
+          "value": 92,
+          "unit": "beats/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        },
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/care-stage",
+            "valueCode": "casevac"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3f3574f8-b4e4-4b94-a0c5-7a2e8b1c3d50",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vital-blood-pressure",
+        "status": "final",
+        "category": [{
+          "coding": [{
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "vital-signs"
+          }]
+        }],
+        "code": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "85354-9",
+            "display": "Blood pressure"
+          }]
+        },
+        "subject": {
+          "reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"
+        },
+        "effectiveDateTime": "2024-01-15T14:25:00Z",
+        "component": [
+          {
+            "code": {
+              "coding": [{
+                "system": "http://loinc.org",
+                "code": "8480-6",
+                "display": "Systolic blood pressure"
+              }]
+            },
+            "valueQuantity": {
+              "value": 110,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          },
+          {
+            "code": {
+              "coding": [{
+                "system": "http://loinc.org",
+                "code": "8462-4",
+                "display": "Diastolic blood pressure"
+              }]
+            },
+            "valueQuantity": {
+              "value": 70,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mm[Hg]"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/care-stage",
+            "valueCode": "medevac"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-vital-temp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "poi-vital-temp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8310-5", "display": "Body temperature"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:16:00Z",
+        "valueQuantity": {"value": 98.2, "unit": "°F", "system": "http://unitsofmeasure.org", "code": "[degF]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-vital-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "poi-vital-hr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:17:00Z",
+        "valueQuantity": {"value": 92, "unit": "bpm", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-vital-sbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "poi-vital-sbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:17:30Z",
+        "valueQuantity": {"value": 135, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-vital-dbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "poi-vital-dbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:17:30Z",
+        "valueQuantity": {"value": 90, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-vital-rr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "poi-vital-rr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "9279-1", "display": "Respiratory rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:18:00Z",
+        "valueQuantity": {"value": 20, "unit": "/min", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-condition-trauma",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "poi-condition-trauma",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "417163006", "display": "Traumatic injury"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T14:15:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-condition-fracture",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "poi-condition-fracture",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "125605004", "display": "Fracture of bone"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T14:16:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-condition-bleeding",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "poi-condition-bleeding",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "125670008", "display": "Foreign body"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T14:18:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-procedure-pressure",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "poi-procedure-pressure",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "182856006", "display": "Hemostatic procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T14:20:00Z",
+        "note": [{"text": "Direct pressure applied manually to control bleeding"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-procedure-bandage",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "poi-procedure-bandage",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "225358003", "display": "Wound care management"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T14:22:00Z",
+        "note": [{"text": "Pressure bandage applied directly"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-procedure-tourniquet",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "poi-procedure-tourniquet",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "385763009", "display": "Tourniquet procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T14:25:00Z",
+        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "61685007", "display": "Left lower limb structure"}]}],
+        "note": [{"text": "Tourniquet applied to left leg"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-medication-morphine",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "poi-medication-morphine",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "387207008", "display": "Morphine"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T14:27:00Z",
+        "dosage": {
+          "dose": {"value": 5, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:poi-procedure-extraction",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "poi-procedure-extraction",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "17629007", "display": "Transfer of patient"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T14:28:00Z",
+        "note": [{"text": "Casualty extraction by manual carry"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "poi"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-vital-temp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "casevac-vital-temp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8310-5", "display": "Body temperature"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T15:30:00Z",
+        "valueQuantity": {"value": 98.6, "unit": "°F", "system": "http://unitsofmeasure.org", "code": "[degF]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-vital-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "casevac-vital-hr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T15:31:00Z",
+        "valueQuantity": {"value": 75, "unit": "bpm", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-vital-sbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "casevac-vital-sbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T15:31:30Z",
+        "valueQuantity": {"value": 120, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-vital-dbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "casevac-vital-dbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T15:31:30Z",
+        "valueQuantity": {"value": 80, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-vital-rr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "casevac-vital-rr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "9279-1", "display": "Respiratory rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T15:32:00Z",
+        "valueQuantity": {"value": 16, "unit": "/min", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-procedure-transport",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "casevac-procedure-transport",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "17629007", "display": "Transfer of patient"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T15:25:00Z",
+        "note": [{"text": "Boxer (MIV-A) Ambulance ground transport"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-procedure-monitoring",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "casevac-procedure-monitoring",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "71181003", "display": "Monitoring"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T15:35:00Z",
+        "note": [{"text": "Continuous vital monitoring electronic"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:casevac-procedure-dressing",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "casevac-procedure-dressing",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "385763009", "display": "Tourniquet procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T15:20:00Z",
+        "note": [{"text": "Applied to wound topical"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "casevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-vital-temp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "medevac-vital-temp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8310-5", "display": "Body temperature"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:00:00Z",
+        "valueQuantity": {"value": 99.2, "unit": "°F", "system": "http://unitsofmeasure.org", "code": "[degF]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-vital-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "medevac-vital-hr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:01:00Z",
+        "valueQuantity": {"value": 85, "unit": "bpm", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-vital-sbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "medevac-vital-sbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:01:30Z",
+        "valueQuantity": {"value": 110, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-vital-dbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "medevac-vital-dbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:01:30Z",
+        "valueQuantity": {"value": 75, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-vital-spo2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "medevac-vital-spo2",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "2708-6", "display": "Oxygen saturation"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:02:00Z",
+        "valueQuantity": {"value": 95, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-condition-fever",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "medevac-condition-fever",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "386661006", "display": "Fever"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T16:00:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-condition-syncope",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "medevac-condition-syncope",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "271594007", "display": "Syncope"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T16:05:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-condition-dyspnea",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "medevac-condition-dyspnea",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "267036007", "display": "Dyspnea"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T16:10:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-condition-nausea",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "medevac-condition-nausea",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "422587007", "display": "Nausea"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T16:15:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-procedure-ivaccess",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "medevac-procedure-ivaccess",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "182856006", "display": "Hemostatic procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T16:20:00Z",
+        "note": [{"text": "IV access intravenous"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-medication-amoxicillin",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "medevac-medication-amoxicillin",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "387562000", "display": "Amoxicillin"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:22:00Z",
+        "dosage": {
+          "dose": {"value": 1, "unit": "g", "system": "http://unitsofmeasure.org", "code": "g"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-medication-saline",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "medevac-medication-saline",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "432102000", "display": "Normal saline"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T16:25:00Z",
+        "dosage": {
+          "dose": {"value": 500, "unit": "ml", "system": "http://unitsofmeasure.org", "code": "mL"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-procedure-immobilization",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "medevac-procedure-immobilization",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "17629007", "display": "Transfer of patient"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T16:30:00Z",
+        "note": [{"text": "Immobilization external"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medevac-procedure-cardiac",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "medevac-procedure-cardiac",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "71181003", "display": "Monitoring"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T16:35:00Z",
+        "note": [{"text": "Cardiac monitoring telemetry"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "medevac"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-vital-temp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r1-vital-temp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8310-5", "display": "Body temperature"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T18:00:00Z",
+        "valueQuantity": {"value": 100.1, "unit": "°F", "system": "http://unitsofmeasure.org", "code": "[degF]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-vital-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r1-vital-hr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T18:01:00Z",
+        "valueQuantity": {"value": 88, "unit": "bpm", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-vital-sbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r1-vital-sbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T18:01:30Z",
+        "valueQuantity": {"value": 105, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-vital-dbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r1-vital-dbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T18:01:30Z",
+        "valueQuantity": {"value": 70, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-vital-hgb",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r1-vital-hgb",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T18:02:00Z",
+        "valueQuantity": {"value": 14.2, "unit": "g/dL", "system": "http://unitsofmeasure.org", "code": "g/dL"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-condition-hypotension",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r1-condition-hypotension",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "302866003", "display": "Hypotension"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T18:00:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-condition-fatigue",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r1-condition-fatigue",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "84229001", "display": "Fatigue"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T18:15:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-condition-nausea",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r1-condition-nausea",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "423902002", "display": "Nausea and vomiting"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T18:30:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-condition-dyspnea",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r1-condition-dyspnea",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "267036007", "display": "Dyspnea"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T18:45:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-procedure-ultrasound",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "r1-procedure-ultrasound",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "18629005", "display": "Ultrasound"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T19:00:00Z",
+        "note": [{"text": "Left leg assessment ultrasound"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-medication-ibuprofen",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "r1-medication-ibuprofen",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "387494007", "display": "Ibuprofen"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T19:10:00Z",
+        "dosage": {
+          "dose": {"value": 400, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-medication-cephalexin",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "r1-medication-cephalexin",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Cephalexin"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T19:15:00Z",
+        "dosage": {
+          "dose": {"value": 1, "unit": "dose", "system": "http://unitsofmeasure.org", "code": "1"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "note": [{"text": "Prophylactic antibiotic IV push"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-procedure-irrigation",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "r1-procedure-irrigation",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "182856006", "display": "Hemostatic procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T19:30:00Z",
+        "note": [{"text": "Wound irrigation topical"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r1-procedure-cleaning",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "r1-procedure-cleaning",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "225358003", "display": "Wound care management"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T19:45:00Z",
+        "note": [{"text": "Wound cleaning topical"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r1"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-vital-temp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r2-vital-temp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8310-5", "display": "Body temperature"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T20:15:00Z",
+        "valueQuantity": {"value": 99.8, "unit": "°F", "system": "http://unitsofmeasure.org", "code": "[degF]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-vital-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r2-vital-hr",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T20:16:00Z",
+        "valueQuantity": {"value": 82, "unit": "bpm", "system": "http://unitsofmeasure.org", "code": "/min"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-vital-sbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r2-vital-sbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T20:16:30Z",
+        "valueQuantity": {"value": 115, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-vital-dbp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r2-vital-dbp",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T20:16:30Z",
+        "valueQuantity": {"value": 78, "unit": "mmHg", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-vital-ph",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "r2-vital-ph",
+        "status": "final",
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}],
+        "code": {"coding": [{"system": "http://loinc.org", "code": "33747-0", "display": "pH of Blood"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T20:17:00Z",
+        "valueQuantity": {"value": 7.35, "unit": "pH", "system": "http://unitsofmeasure.org", "code": "[pH]"},
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-condition-cellulitis",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r2-condition-cellulitis",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "128045006", "display": "Cellulitis"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T20:15:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-condition-pain",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r2-condition-pain",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "225566008", "display": "Aching pain"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T20:30:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-condition-edema",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "r2-condition-edema",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "encounter-diagnosis"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "62914000", "display": "Edema"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "onsetDateTime": "2024-01-15T20:45:00Z",
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-procedure-ct",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "r2-procedure-ct",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "71388002", "display": "CT scan"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T21:00:00Z",
+        "note": [{"text": "CT scan imaging"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-medication-tramadol",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "r2-medication-tramadol",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "387467008", "display": "Tramadol"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T21:10:00Z",
+        "dosage": {
+          "dose": {"value": 50, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-medication-amoxicillin",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "r2-medication-amoxicillin",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T21:15:00Z",
+        "dosage": {
+          "dose": {"value": 500, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-procedure-hemostasis",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "r2-procedure-hemostasis",
+        "status": "completed",
+        "category": {"coding": [{"system": "http://snomed.info/sct", "code": "387713003", "display": "Surgical procedure"}]},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "182856006", "display": "Hemostatic procedure"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "performedDateTime": "2024-01-15T21:30:00Z",
+        "note": [{"text": "Surgical hemostasis intraoperative"}],
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:r2-medication-epinephrine",
+      "resource": {
+        "resourceType": "MedicationAdministration",
+        "id": "r2-medication-epinephrine",
+        "status": "completed",
+        "medicationCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "108761006", "display": "Epinephrine"}]},
+        "subject": {"reference": "urn:uuid:2b90dd2b-2dab-4c75-9bb9-a355e07401e8"},
+        "effectiveDateTime": "2024-01-15T21:45:00Z",
+        "dosage": {
+          "dose": {"value": 1, "unit": "mg", "system": "http://unitsofmeasure.org", "code": "mg"},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "47625008", "display": "Intravenous route"}]}
+        },
+        "extension": [{"url": "http://example.org/fhir/StructureDefinition/care-stage", "valueCode": "r2"}]
+      }
+    }
+  ]
+}
