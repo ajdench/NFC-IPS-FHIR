@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package medis.nfc;
+
+message Code {
+    string sys = 1;
+    string code = 2;
+}
+
+message Patient {
+    repeated string n = 1;
+    string r = 2;
+    string sn = 3;
+    int32 dob = 4;
+    string nhs = 5;
+    int32 bg = 6;
+}
+
+message VitalValue {
+    int32 dIndex = 1;
+    double value = 2;
+    string unit = 3;
+}
+
+message ConditionValue {
+    int32 dIndex = 1;
+    string onset = 2;
+}
+
+message EventValue {
+    int32 dIndex = 1;
+    string time = 2;
+    double dose = 3;
+    string route = 4;
+}
+
+message Vitals {
+    repeated VitalValue poi = 1;
+    repeated VitalValue medevac = 2;
+    repeated VitalValue r1 = 3;
+    repeated VitalValue r2 = 4;
+}
+
+message Conditions {
+    repeated ConditionValue poi = 1;
+    repeated ConditionValue medevac = 2;
+    repeated ConditionValue r1 = 3;
+    repeated ConditionValue r2 = 4;
+}
+
+message Events {
+    repeated EventValue poi = 1;
+    repeated EventValue medevac = 2;
+    repeated EventValue r1 = 3;
+    repeated EventValue r2 = 4;
+}
+
+message NFCPayload {
+    repeated Code D = 1;
+    Patient P = 2;
+    Vitals V = 3;
+    Conditions C = 4;
+    Events E = 5;
+    int64 t = 6;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC IPS Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>NFC IPS Viewer</h1>
+            <div class="payload-header">
+                <div class="controls">
+                    <button id="encode-button" class="action-button">Encode</button>
+                    <button id="decode-button" class="action-button">Decode</button>
+                    <select id="demo-payload-select" class="payload-select">
+                        <option value="payload-1.json">Demo Payload 1</option>
+                        <option value="payload-2.json">Demo Payload 2</option>
+                    </select>
+                    <input type="file" id="file-input" accept=".json" style="display: none;">
+                    <button id="load-file-button" class="action-button">Load File</button>
+                </div>
+                <div class="toast-container" id="toast-container"></div>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="content-wrapper">
+                <!-- Left Panel: OPCP Stage Information Boxes -->
+                <div class="left-panel">
+                    <div id="info-boxes-container" class="info-boxes-container">
+                        <!-- Info boxes will be created dynamically by createInfoBoxes() -->
+                    </div>
+                </div>
+
+                <!-- Middle Panel: Vitals Chart -->
+                <div class="middle-panel">
+                    <div class="vitals-chart-container">
+                        <canvas id="vitals-chart"></canvas>
+                        <div id="vitals-empty" class="empty-state">
+                            <p>No vitals data available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Raw Payload Display -->
+                <div class="right-panel">
+                    <div class="raw-payload-container">
+                        <h3>Raw Payload</h3>
+                        <pre id="ips-input"></pre>
+                        <div id="ips-char-count" class="char-count"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Enhanced UI Elements -->
+        <div class="enhanced-controls" style="display: none;">
+            <div class="pane-controls">
+                <div class="left-pane-controls">
+                    <h3 id="left-pane-title">Input</h3>
+                    <textarea id="left-input" placeholder="Enter FHIR Bundle JSON..."></textarea>
+                    <div id="left-char-count" class="char-count">0 characters</div>
+                    <div class="button-group">
+                        <button id="preset-1" class="preset-button">Preset 1</button>
+                        <button id="preset-2" class="preset-button">Preset 2</button>
+                        <button id="preset-3" class="preset-button">Preset 3</button>
+                        <button id="clear-left" class="clear-button">Clear</button>
+                    </div>
+                </div>
+
+                <div class="center-controls">
+                    <button id="action-button" class="main-action-button">→ Encode</button>
+                    <button id="parse-button" class="parse-button">Parse & Display</button>
+                </div>
+
+                <div class="right-pane-controls">
+                    <h3 id="right-pane-title">Output</h3>
+                    <textarea id="right-input" readonly placeholder="Encoded output will appear here..."></textarea>
+                    <div id="right-char-count" class="char-count">0 characters</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legacy Elements for Compatibility -->
+        <div class="legacy-elements" style="display: none;">
+            <textarea id="fragment-input"></textarea>
+            <button id="clear-fragment">Clear Fragment</button>
+            <button id="clear-ips">Clear IPS</button>
+        </div>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="resources/vendor/chart.umd.min.js"></script>
+    <!-- Protobuf Libraries -->
+    <script src="resources/vendor/protobuf.min.js"></script>
+    <script src="resources/vendor/pako.min.js"></script>
+    <!-- Main Application -->
+    <script type="module" src="script.js"></script>
+
+    <script>
+        // Initialize the application when DOM is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (typeof init === 'function') {
+                await init();
+            }
+
+            // Add demo payload selector functionality
+            const demoSelect = document.getElementById('demo-payload-select');
+            if (demoSelect) {
+                demoSelect.addEventListener('change', async (event) => {
+                    const selectedPayload = event.target.value;
+                    console.log('Loading payload:', selectedPayload);
+
+                    try {
+                        // Fetch the selected payload
+                        const response = await fetch(selectedPayload);
+                        const payloadData = await response.json();
+
+                        // Process FHIR data and create viewModel
+                        let processedPayload = payloadData;
+
+                        // Convert FHIR Bundle to CodeRef format if needed
+                        if (payloadData.resourceType === 'Bundle' && typeof convertFhirToCodeRef === 'function') {
+                            console.log('Converting FHIR Bundle to CodeRef format...');
+                            processedPayload = convertFhirToCodeRef(payloadData);
+                        }
+
+                        // Create viewModel and render all components
+                        if (typeof processAndRenderAll === 'function') {
+                            console.log('Rendering processed payload...');
+                            processAndRenderAll(processedPayload);
+                        } else {
+                            // Fallback: just display raw JSON
+                            console.log('Fallback: displaying raw JSON');
+                            const rawDisplay = document.getElementById('ips-input');
+                            if (rawDisplay) {
+                                rawDisplay.textContent = JSON.stringify(processedPayload, null, 2);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Failed to load payload:', error);
+                    }
+                });
+
+                // Auto-load first payload
+                if (demoSelect.value) {
+                    demoSelect.dispatchEvent(new Event('change'));
+                }
+            }
+        });
+    </script>
+</body>
+</html>

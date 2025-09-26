@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package medis.nfc;
+
+// Phase 2: System URL Compression (90% reduction)
+enum SystemType {
+    UNKNOWN_SYSTEM = 0;
+    SNOMED_CT = 1;          // http://snomed.info/sct
+    LOINC = 2;              // http://loinc.org
+    UCUM = 3;               // http://unitsofmeasure.org
+    HL7_CONDITION = 4;      // http://terminology.hl7.org/CodeSystem/condition-clinical
+    HL7_VERIFICATION = 5;   // http://terminology.hl7.org/CodeSystem/condition-ver-status
+    HL7_OBSERVATION = 6;    // http://terminology.hl7.org/CodeSystem/observation-category
+    ISO_3166 = 7;           // urn:iso:std:iso:3166
+    NHS_IDENTIFIER = 8;     // https://fhir.nhs.uk/Id/nhs-number
+}
+
+// Phase 2: Status Code Compression (95% reduction)
+enum ClinicalStatus {
+    UNKNOWN_CLINICAL = 0;
+    ACTIVE = 1;             // "active"
+    RESOLVED = 2;           // "resolved"
+    INACTIVE = 3;           // "inactive"
+    REMISSION = 4;          // "remission"
+}
+
+enum VerificationStatus {
+    UNKNOWN_VERIFICATION = 0;
+    CONFIRMED = 1;          // "confirmed"
+    UNCONFIRMED = 2;        // "unconfirmed"
+    PROVISIONAL = 3;        // "provisional"
+    DIFFERENTIAL = 4;       // "differential"
+}
+
+enum ObservationCategory {
+    UNKNOWN_CATEGORY = 0;
+    VITAL_SIGNS = 1;        // "vital-signs"
+    LABORATORY = 2;         // "laboratory"
+    SURVEY = 3;            // "survey"
+    SOCIAL_HISTORY = 4;    // "social-history"
+}
+
+// Enhanced CodeRef with optional enum compression
+message CodeRef {
+    oneof system_reference {
+        string sys = 1;         // Legacy: full system URL
+        SystemType system_id = 9; // Phase 2: enum compression
+    }
+    string code = 2;
+
+    // Optional status compression fields
+    ClinicalStatus clinical_status = 10;
+    VerificationStatus verification_status = 11;
+    ObservationCategory category = 12;
+}
+
+message Patient {
+    string given = 1;
+    string family = 2;
+    CodeRef gender = 3;
+    CodeRef blood_group = 4;
+    CodeRef nhs_id = 5;
+    CodeRef service_id = 6;
+    string dob = 7;
+    string rank = 8;
+    string title = 9;
+    string nationality = 10;
+}
+
+message Vital {
+    CodeRef code = 1;
+    double value = 2;
+    string time = 3;
+}
+
+message Condition {
+    CodeRef code = 1;
+    string onset = 2;
+}
+
+message Event {
+    CodeRef code = 1;
+    string time = 2;
+    double dose = 3;
+    string unit = 4;
+    string route = 5;
+}
+
+message Stage {
+    repeated Vital vitals = 1;
+    repeated Condition conditions = 2;
+    repeated Event events = 3;
+}
+
+message BundleMetadata {
+    string id = 1;
+    string meta_json = 2;
+    string identifier_json = 3;
+    string type = 4;
+    string timestamp = 5;
+}
+
+message Allergy {
+    CodeRef code = 1;
+    string onset = 2;
+    string severity = 3;
+}
+
+message NFCPayload {
+    Patient patient = 1;
+    Stage poi = 2;
+    Stage medevac = 3;
+    Stage r1 = 4;
+    Stage r2 = 5;
+    Stage casevac = 6;
+    Stage r3 = 7;
+    int64 t = 8;
+    BundleMetadata bundleMetadata = 9;
+    repeated Allergy allergies = 10;
+}
