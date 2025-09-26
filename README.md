@@ -74,16 +74,16 @@ To use this viewer, you will need an NFC tag encoded with a URI that includes yo
     cd nfc-ips
     ```
 
-2.  **Install dependencies (optional):**
+2.  **Install dependencies:**
     ```bash
-    npm install  # For development tools
+    npm install
     ```
 
-3.  **Start development server:**
+3.  **Start a local server:**
     ```bash
-    npm run dev  # Uses live-server with hot reload
-    # OR
-    python -m http.server 8080  # Simple HTTP server
+    python3 -m http.server 8080
+    # or any static server such as:
+    npx http-server .
     ```
 
 4.  **Access the application:**

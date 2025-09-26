@@ -1,0 +1,17 @@
+{
+  "name": "nfc-ips-viewer",
+  "version": "1.0.0",
+  "description": "Interactive NFC IPS viewer with FHIR/CodeRef processing and Chart.js visualisations.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "deploy:dev1": "gh-pages -d build -b Test_Dev1_eafde10_Pages"
+  },
+  "dependencies": {
+    "pako": "^2.1.0",
+    "protobufjs": "^7.2.5"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "resourceType": "Patient",
+  "meta": {
+    "profile": [
+      "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient"
+    ]
+  },
+  "id": "example",
+  "identifier": [
+    {
+      "use": "official",
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-IdentifierType",
+            "code": "nhsNumber",
+            "display": "NHS Number"
+          }
+        ],
+        "text": "NHS Number"
+      },
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "4857773456"
+    },
+    {
+      "use": "secondary",
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "MIL",
+            "display": "Military ID number"
+          }
+        ],
+        "text": "Service Number"
+      },
+      "value": "5199"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "prefix": [
+        "Drummer"
+      ],
+      "given": [
+        "Thomas"
+      ],
+      "family": "Hodge"
+    }
+  ],
+  "birthDate": "1884-06-02",
+  "gender": "male",
+  "extension": [
+    {
+      "url": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-Occupation",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "223366009",
+            "display": "Military personnel"
+          },
+          {
+            "system": "http://snomed.info/sct",
+            "code": "41000179103",
+            "display": "Active duty military personnel"
+          }
+        ],
+        "text": "Active duty military personnel"
+      }
+    },
+    {
+      "url": "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-SocialCareStatus",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "73425007",
+            "display": "Military service"
+          }
+        ],
+        "text": "Military service"
+      }
+    }
+  ]
+}

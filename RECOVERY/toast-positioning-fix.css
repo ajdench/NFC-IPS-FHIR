@@ -1,0 +1,101 @@
+/* ===================================================================
+   TOAST POSITIONING SYSTEM - RECOVERY VERSION
+   ================================================================ */
+
+/* WORKING SOLUTION - Apply these changes to style.css */
+
+.toast-container {
+    /* CRITICAL: Use static positioning, NOT absolute */
+    position: static;
+
+    /* Center horizontally with auto margins */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+
+    /* Flexbox centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Match header gap space */
+    height: calc(var(--standard-padding) * 0.75);
+
+    /* Fine-tuning: 2px up for perfect positioning */
+    margin-top: -2px;
+
+    /* Standard properties */
+    z-index: 100;
+    pointer-events: none;
+}
+
+.toast-message {
+    /* Match Encode/Decode button dimensions exactly */
+    height: calc(var(--standard-padding) * 1.5);
+    font-size: calc(var(--font-size-uniform) * 0.8);
+
+    /* Button-style padding */
+    padding: 0 var(--standard-padding);
+
+    /* Flexbox centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Maintain current styling */
+    border-radius: calc(var(--standard-padding) * 2);
+    border: 1px solid;
+    background: transparent;
+    font-weight: normal;
+    white-space: nowrap;
+    margin: var(--half-padding) 0;
+
+    /* Animations */
+    animation: toastFadeIn 0.3s ease-out, toastFadeOut 0.3s ease-out 2.7s forwards;
+    pointer-events: auto;
+
+    /* Flexible width */
+    width: auto;
+    min-width: fit-content;
+}
+
+/* Color variants - maintain existing */
+.toast-message.success {
+    border-color: #90EE90;
+    color: #5cb85c;
+}
+
+.toast-message.warning {
+    border-color: #FFE4B5;
+    color: #d2973d;
+}
+
+.toast-message.error {
+    border-color: #FFB6C1;
+    color: #c9302c;
+}
+
+/* ===================================================================
+   POSITIONING EXPLANATION
+   ================================================================ */
+
+/*
+PROBLEM: Toast container is inside payload-header which uses:
+- display: flex
+- justify-content: space-between
+This pushed toast to right side.
+
+SOLUTION ATTEMPTS THAT FAILED:
+❌ position: absolute with top/bottom values
+❌ transform: translate(-50%, -50%)
+❌ Complex margin calculations
+
+WORKING SOLUTION:
+✅ position: static (normal document flow)
+✅ margin-left/right: auto (centers within flex parent)
+✅ width: fit-content (only as wide as needed)
+✅ margin-top: -2px (fine-tuning for perfect position)
+
+RESULT: Toast appears perfectly centered in the gap between
+payload header and sub-panes, matching button height/font size.
+*/
